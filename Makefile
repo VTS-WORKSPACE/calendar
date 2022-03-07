@@ -1,7 +1,7 @@
 # This file is licensed under the Affero General Public License version 3 or
 # later. See the COPYING file.
 
-all: dev-setup lint build-js-production test test-php
+all: dev-setup build-js-production release
 
 # Dev env management
 dev-setup: clean npm-init
@@ -65,3 +65,6 @@ clean:
 # Builds the source package for the app store, ignores php and js tests
 appstore:
 	krankerl package
+
+release:
+	zip -r release.zip . -x "node_modules/*" "tests/*" "vendor/*"
